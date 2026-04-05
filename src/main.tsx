@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { I18nProvider } from "./contexts/I18nContext";
 import "./index.css";
+import { initWebAPI } from "./lib/webAPI";
+
+initWebAPI();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
