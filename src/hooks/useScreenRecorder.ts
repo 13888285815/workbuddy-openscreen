@@ -345,8 +345,13 @@ export function useScreenRecorder(): UseScreenRecorderReturn {
 			}
 
 			let screenMediaStream: MediaStream;
+			const isWeb = !window.electronAPI || (await window.electronAPI.getPlatform()) === "web";
 
-			const videoConstraints = {
+			const videoConstraints = isWeb ? {
+				width: { ideal: TARGET_WIDTH },
+				height: { ideal: TARGET_HEIGHT },
+				frameRate: { ideal: TARGET_FRAME_RATE }
+			} : {
 				mandatory: {
 					chromeMediaSource: CHROME_MEDIA_SOURCE,
 					chromeMediaSourceId: selectedSource.id,
@@ -359,7 +364,16 @@ export function useScreenRecorder(): UseScreenRecorderReturn {
 
 			if (systemAudioEnabled) {
 				try {
-					screenMediaStream = await navigator.mediaDevices.getUserMedia({
+					screenMediaStream = isWeb 
+					? await navigator.mediaDevices.getDisplayMedia({
+						audio: true,
+						video: {
+							width: { ideal: TARGET_WIDTH },
+							height: { ideal: TARGET_HEIGHT },
+							frameRate: { ideal: TARGET_FRAME_RATE }
+						}
+					})
+					: await navigator.mediaDevices.getUserMedia({
 						audio: {
 							mandatory: {
 								chromeMediaSource: CHROME_MEDIA_SOURCE,
@@ -371,13 +385,23 @@ export function useScreenRecorder(): UseScreenRecorderReturn {
 				} catch (audioErr) {
 					console.warn("System audio capture failed, falling back to video-only:", audioErr);
 					toast.error(t("recording.systemAudioUnavailable"));
-					screenMediaStream = await navigator.mediaDevices.getUserMedia({
+					screenMediaStream = isWeb
+					? await navigator.mediaDevices.getDisplayMedia({
+						audio: false,
+						video: videoConstraints
+					})
+					: await navigator.mediaDevices.getUserMedia({
 						audio: false,
 						video: videoConstraints,
 					} as unknown as MediaStreamConstraints);
 				}
 			} else {
-				screenMediaStream = await navigator.mediaDevices.getUserMedia({
+				screenMediaStream = isWeb
+				? await navigator.mediaDevices.getDisplayMedia({
+					audio: false,
+					video: videoConstraints
+				})
+				: await navigator.mediaDevices.getUserMedia({
 					audio: false,
 					video: videoConstraints,
 				} as unknown as MediaStreamConstraints);
