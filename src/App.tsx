@@ -28,7 +28,7 @@ export default function App() {
 	}, []);
 
 	const content = (() => {
-		switch (windowType) {
+		switch (windowType || (window.location.hash.includes('editor') ? 'editor' : 'hud-overlay')) {
 			case "hud-overlay":
 				return <LaunchWindow />;
 			case "source-selector":
