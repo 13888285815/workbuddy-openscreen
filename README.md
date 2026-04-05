@@ -5,10 +5,10 @@
   <img src="public/openscreen.png" alt="OpenScreen Logo" width="64" />
   <br />
   <br />
-  <a href="https://deepwiki.com/siddharthvaddem/openscreen">
-    <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" />
-  </a>
 </p>
+
+<p align="center"><strong><a href="https://13888285815.github.io/workbuddy-openscreen/">🚀 立即在线体验 (浏览器演示版)</a></strong></p>
+<br />
 
 # <p align="center">OpenScreen</p>
 
@@ -40,7 +40,7 @@ OpenScreen is 100% free for personal and commercial use. Use it, modify it, dist
 
 ## Installation
 
-Download the latest installer for your platform from the [GitHub Releases](https://github.com/siddharthvaddem/openscreen/releases) page.
+Download the latest installer for your platform from the [GitHub Releases](https://github.com/13888285815/workbuddy-openscreen/releases) page.
 
 ### macOS
 
@@ -92,7 +92,7 @@ _I'm new to open source, idk what I'm doing lol. If something is wrong please ra
 
 ## Contributing
 
-Contributions are welcome! If you’d like to help out or see what’s currently being worked on, take a look at the open issues and the [project roadmap](https://github.com/users/siddharthvaddem/projects/3) to understand the current direction of the project and find ways to contribute.
+Contributions are welcome! If you’d like to help out or see what’s currently being worked on, take a look at the open issues and the [project roadmap](https://github.com/13888285815/workbuddy-openscreen/projects) to understand the current direction of the project and find ways to contribute.
 
 ## License
 
